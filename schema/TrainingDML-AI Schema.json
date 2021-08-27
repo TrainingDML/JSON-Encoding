@@ -1,0 +1,774 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "TrainingDML-AI.json",
+  "title": "TrainingDML-AI JSON schema",
+  "oneOf": [
+    {
+      "$ref": "#/definitions/rsTrainingDataset"
+    },
+    {
+      "$ref": "#/definitions/rsTrainingData"
+    }
+  ],
+  "definitions": {
+    "trainingDataset": {
+      "title": "TrainingDataset",
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "description",
+        "version",
+        "amountOfTrainingData",
+        "createdTime",
+        "numberOfClasses",
+        "classificationSchema",
+        "task",
+        "data"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "amountOfTrainingData": {
+          "type": "integer"
+        },
+        "createdTime": {
+          "oneOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            }
+          ]
+        },
+        "updatedTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "license": {
+          "type": "string"
+        },
+        "providers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "keywords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "metricsInLIT": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/metricsInLiterature"
+          }
+        }
+      },
+      "statisticsInfo": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "class",
+            "count"
+          ],
+          "properties": {
+            "class": {
+              "type": "string"
+            },
+            "count": {
+              "type": "integer"
+            }
+          }
+        },
+        "minItems": 1
+      },
+      "numberOfClasses": {
+        "type": "integer"
+      },
+      "classificationSchema": {
+        "oneOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          {
+            "type": "string",
+            "format": "uri-reference"
+          }
+        ]
+      },
+      "classMap": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "class",
+            "value"
+          ],
+          "properties": {
+            "class": {
+              "type": "string"
+            },
+            "value": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            }
+          }
+        },
+        "minItems": 1
+      },
+      "task": {
+        "$ref": "#/definitions/task"
+      },
+      "quality": {
+        "$ref": "#/definitions/trainingDataQuality"
+      },
+      "labelings": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/labeling"
+        }
+      },
+      "data": {
+        "oneOf": [
+          {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/trainingData"
+            },
+            "minItems": 1
+          },
+          {
+            "type": "string",
+            "format": "uri-reference"
+          }
+        ]
+      }
+    },
+    "rsTrainingDataset": {
+      "title": "RSTrainingDataset",
+      "type": "object",
+      "required": [
+        "type",
+        "dataSources",
+        "bands"
+      ],
+      "oneOf": [
+        {
+          "$ref": "#/definitions/trainingDataset"
+        }
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "RSTrainingDataset"
+          ]
+        },
+        "extent": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 4
+        },
+        "dataSources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rsDataSource"
+          },
+          "minItems": 1
+        },
+        "bands": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "maxValue": {
+                "type": "number"
+              },
+              "mimValue": {
+                "type": "number"
+              },
+              "units": {
+                "type": "string"
+              }
+            }
+          },
+          "minItems": 1
+        },
+        "imageSize": {
+          "type": "string"
+        },
+        "task": {
+          "$ref": "#/definitions/rsTask"
+        },
+        "quality": {
+          "$ref": "#/definitions/rsTrainingDataQuality"
+        },
+        "data": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/rsTrainingData"
+              },
+              "minItems": 1
+            },
+            {
+              "type": "string",
+              "format": "uri-reference"
+            }
+          ]
+        }
+      }
+    },
+    "trainingData": {
+      "title": "TrainingData",
+      "type": "object",
+      "required": [
+        "id",
+        "labels"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "trainingType": {
+          "$ref": "#/definitions/trainingTypeCode"
+        },
+        "numberOfLabels": {
+          "type": "integer"
+        },
+        "labels": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/label"
+              },
+              "minItems": 2
+            },
+            {
+              "$ref": "#/definitions/label"
+            }
+          ]
+        }
+      }
+    },
+    "rsTrainingData": {
+      "title": "RSTrainingData",
+      "type": "object",
+      "required": [
+        "type",
+        "dataUrl"
+      ],
+      "oneOf": [
+        {
+          "$ref": "#/definitions/trainingData"
+        }
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "RSTrainingData"
+          ]
+        },
+        "bbox": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "minItems": 4
+              },
+              "minItems": 2
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 4
+            }
+          ]
+        },
+        "dataTime": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  {
+                    "type": "string",
+                    "format": "date"
+                  }
+                ]
+              },
+              "minItems": 2
+            },
+            {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "string",
+                  "format": "date"
+                }
+              ]
+            }
+          ]
+        },
+        "dataSourceId": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 2
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "dataUrl": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri-reference"
+              },
+              "minItems": 2
+            },
+            {
+              "type": "string",
+              "format": "uri-reference"
+            }
+          ]
+        }
+      }
+    },
+    "label": {
+      "title": "Label",
+      "type": "object",
+      "properties": {
+        "isNegative": {
+          "type": "boolean"
+        }
+      }
+    },
+    "sceneLabel": {
+      "title": "SceneLabel",
+      "type": "object",
+      "required": [
+        "type",
+        "class"
+      ],
+      "oneOf": [
+        {
+          "$ref": "#/definitions/label"
+        }
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "SceneLabel"
+          ]
+        },
+        "class": {
+          "type": "string"
+        }
+      }
+    },
+    "objectLabel": {
+      "title": "ObjectLabel",
+      "type": "object",
+      "required": [
+        "type",
+        "class"
+      ],
+      "oneOf": [
+        {
+          "$ref": "#/definitions/label"
+        }
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "ObjectLabel"
+          ]
+        },
+        "class": {
+          "object": {
+            "$ref": "https://geojson.org/schema/Geometry.json"
+          }
+        }
+      }
+    },
+    "pixelLabel": {
+      "title": "PixelLabel",
+      "type": "object",
+      "required": [
+        "type",
+        "imageUrl"
+      ],
+      "oneOf": [
+        {
+          "$ref": "#/definitions/label"
+        }
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "PixelLabel"
+          ]
+        },
+        "imageUrl": {
+          "type": "string",
+          "format": "uri-reference"
+        }
+      }
+    },
+    "labeler": {
+      "title": "Labeler",
+      "type": "object",
+      "required": [
+        "type",
+        "id",
+        "name"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "Labeler"
+          ]
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "labelingProcedure": {
+      "title": "LabelingProcedure",
+      "type": "object",
+      "required": [
+        "type",
+        "id",
+        "method"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "LabelingProcedure"
+          ]
+        },
+        "id": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string"
+        },
+        "tools": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "labeling": {
+      "title": "Labeling",
+      "type": "object",
+      "required": [
+        "type",
+        "id",
+        "labler",
+        "procedure"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "Labeling"
+          ]
+        },
+        "id": {
+          "type": "string"
+        },
+        "labler": {
+          "$ref": "#difinitions/labler"
+        },
+        "procedure": {
+          "$ref": "#difinitions/procedure"
+        }
+      }
+    },
+    "task": {
+      "title": "Task",
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "rsTask": {
+      "title": "RSTask",
+      "type": "object",
+      "required": [
+        "type",
+        "taskType"
+      ],
+      "oneOf": [
+        {
+          "$ref": "#/definitions/task"
+        }
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "RSTask"
+          ]
+        },
+        "taskType": {
+          "type": "string"
+        }
+      }
+    },
+    "rsDataSource": {
+      "title": "RSDataSource",
+      "type": "object",
+      "required": [
+        "id",
+        "dataType"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "dataType": {
+          "type": "string"
+        },
+        "citation": {
+          "type": "string"
+        },
+        "satellite": {
+          "type": "string"
+        },
+        "sensor": {
+          "type": "string"
+        },
+        "resolution": {
+          "type": "string"
+        }
+      }
+    },
+    "metricsInLiterature": {
+      "title": "MetricsInLiterature",
+      "type": "object",
+      "required": [
+        "doi",
+        "algroithm",
+        "metrics"
+      ],
+      "properties": {
+        "doi": {
+          "type": "string"
+        },
+        "algorithm": {
+          "type": "string"
+        },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "value"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "value": {
+                "type": "number"
+              }
+            }
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "trainingDataQuality": {
+      "title": "TrainingDataQuality",
+      "type": "object",
+      "properties": {
+        "scope": {
+          "type": "string"
+        }
+      }
+    },
+    "rsTrainingDataQuality": {
+      "title": "RSTrainingDataQuality",
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/trainingDataQuality"
+        }
+      ],
+      "properties": {}
+    },
+    "sceneRSTDQuality": {
+      "title": "SceneRSTDQuality",
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "oneOf": [
+        {
+          "$ref": "#/definitions/rsTrainingDataQuality"
+        }
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "SceneRSTDQuality"
+          ]
+        },
+        "labelClassCorrectness": {
+          "type": "string"
+        },
+        "classBalanceDegree": {
+          "type": "string"
+        }
+      }
+    },
+    "objectRSTDQuality": {
+      "title": "ObjectRSTDQuality",
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "oneOf": [
+        {
+          "$ref": "#/definitions/rsTrainingDataQuality"
+        }
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "ObjectRSTDQuality"
+          ]
+        },
+        "labelClassCorrectness": {
+          "type": "string"
+        },
+        "labelCompletenessOmission": {
+          "type": "string"
+        },
+        "labelCompletenessCommission": {
+          "type": "string"
+        },
+        "labelPositionalAccuracy": {
+          "type": "string"
+        },
+        "labelOverlapRate": {
+          "type": "string"
+        }
+      }
+    },
+    "pixelRSTDQuality": {
+      "title": "PixelRSTDQuality",
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "oneOf": [
+        {
+          "$ref": "#/definitions/rsTrainingDataQuality"
+        }
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "PixelRSTDQuality"
+          ]
+        },
+        "labelClassCorrectness": {
+          "type": "string"
+        },
+        "labelCompletenessOmission": {
+          "type": "string"
+        },
+        "labelCompletenessCommission": {
+          "type": "string"
+        },
+        "classBalanceDegree": {
+          "type": "string"
+        }
+      }
+    },
+    "trainingTypeCode": {
+      "type": "string",
+      "enum": [
+        "training",
+        "validation",
+        "test"
+      ]
+    }
+  }
+}
