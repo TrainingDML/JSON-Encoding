@@ -21,7 +21,7 @@
       "resolution": "0.5m"
     }
   ],
-  "classificationSchema": [
+  "classes": [
     "Airport",
     "Beach",
     "Bridge",
@@ -44,17 +44,11 @@
   ],
   "numberOfClasses": 19,
   "bands": [
-    {
-      "name": "red"
-    },
-    {
-      "name": "green"
-    },
-    {
-      "name": "blue"
-    }
+    "red",
+    "green",
+    "blue"
   ],
-  "imageSize": "600¡Á600",
+  "imageSize": "600\u00d7600",
   "task": {
     "type": "RSTask",
     "description": "Structural high-resolution satellite image indexing",

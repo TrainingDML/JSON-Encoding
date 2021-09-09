@@ -22,9 +22,8 @@
         "amountOfTrainingData",
         "createdTime",
         "numberOfClasses",
-        "classificationSchema",
-        "task",
-        "data"
+        "classes",
+        "task"
       ],
       "properties": {
         "id": {
@@ -102,44 +101,14 @@
       "numberOfClasses": {
         "type": "integer"
       },
-      "classificationSchema": {
-        "oneOf": [
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "minItems": 1
-          },
-          {
-            "type": "string",
-            "format": "uri-reference"
-          }
-        ]
+      "classificationScheme": {
+        "type": "string",
+        "format": "uri-reference"
       },
-      "classMap": {
+      "classes": {
         "type": "array",
         "items": {
-          "type": "object",
-          "required": [
-            "class",
-            "value"
-          ],
-          "properties": {
-            "class": {
-              "type": "string"
-            },
-            "value": {
-              "oneOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "number"
-                }
-              ]
-            }
-          }
+          "oneOf": [{"type": "object"},{"type": "string"}]
         },
         "minItems": 1
       },
@@ -208,21 +177,7 @@
         "bands": {
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string"
-              },
-              "maxValue": {
-                "type": "number"
-              },
-              "mimValue": {
-                "type": "number"
-              },
-              "units": {
-                "type": "string"
-              }
-            }
+            "type": "string"
           },
           "minItems": 1
         },

@@ -27,26 +27,16 @@
       "resolution": "0.2m"
     }
   ],
-  "classificationSchema": [
-    "Building"
-  ],
-  "classMap": [
+  "classes": [
     {
-      "value": 1,
-      "calss": "building"
+      "building": 1
     }
   ],
   "numberOfClasses": 1,
   "bands": [
-    {
-      "name": "red"
-    },
-    {
-      "name": "green"
-    },
-    {
-      "name": "blue"
-    }
+    "red",
+    "green",
+    "blue"
   ],
   "imageSize": "32507\u00d715354",
   "task": {

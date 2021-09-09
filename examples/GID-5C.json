@@ -21,46 +21,28 @@
       "resolution": "4m"
     }
   ],
-  "classificationSchema": [
-    "built-up",
-    "farmland",
-    "forest",
-    "meadow",
-    "water"
-  ],
-  "classMap": [
+  "classes": [
     {
-      "value": "RGC(255,0,0)",
-      "class": "built-up"
+      "built-up": "RGC(255,0,0)"
     },
     {
-      "value": "RGC(0,255,0)",
-      "class": "farmland"
+      "farmland": "RGC(0,255,0)"
     },
     {
-      "value": "RGC(0,255,255)",
-      "class": "forest"
+      "forest": "RGC(0,255,255)"
     },
     {
-      "value": "RGC(255,255,0)",
-      "class": "meadow"
+      "meadow": "RGC(255,255,0)"
     },
     {
-      "value": "RGC(0,0,255)",
-      "class": "water"
+      "water": "RGC(0,0,255)"
     }
   ],
   "numberOfClasses": 5,
   "bands": [
-    {
-      "name": "red"
-    },
-    {
-      "name": "green"
-    },
-    {
-      "name": "blue"
-    }
+    "red",
+    "green",
+    "blue"
   ],
   "task": {
     "type": "RSTask",
