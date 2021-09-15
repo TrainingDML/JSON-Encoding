@@ -1,5 +1,5 @@
 {
-  "type": "RSTrainingDataset",
+  "type": "EOTrainingDataset",
   "id": "WHU-Building",
   "name": "WHU-Building Dataset-Building Change Detection Dataset",
   "description": "This dataset covers an area where a 6.3-magnitude earthquake has occurred in February 2011 and rebuilt in the following years. This dataset consists of aerial images obtained in April 2012 that contains 12796 buildings in 20.5 km2 (16077 buildings in the same area in 2016 dataset).",
@@ -40,13 +40,13 @@
   ],
   "imageSize": "32507\u00d715354",
   "task": {
-    "type": "RSTask",
+    "type": "EOTask",
     "description": "Building change detection",
     "taskType": "Change Detection"
   },
   "data": [
     {
-      "type": "RSTrainingData",
+      "type": "EOTrainingData",
       "id": "0",
       "dataSourceId": "0",
       "bbox": [

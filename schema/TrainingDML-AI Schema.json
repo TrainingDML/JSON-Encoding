@@ -141,7 +141,7 @@
       }
     },
     "rsTrainingDataset": {
-      "title": "RSTrainingDataset",
+      "title": "EOTrainingDataset",
       "type": "object",
       "required": [
         "type",
@@ -157,7 +157,7 @@
         "type": {
           "type": "string",
           "enum": [
-            "RSTrainingDataset"
+            "EOTrainingDataset"
           ]
         },
         "extent": {
@@ -241,7 +241,7 @@
       }
     },
     "rsTrainingData": {
-      "title": "RSTrainingData",
+      "title": "EOTrainingData",
       "type": "object",
       "required": [
         "type",
@@ -256,7 +256,7 @@
         "type": {
           "type": "string",
           "enum": [
-            "RSTrainingData"
+            "EOTrainingData"
           ]
         },
         "bbox": {
@@ -518,7 +518,7 @@
       }
     },
     "rsTask": {
-      "title": "RSTask",
+      "title": "EOTask",
       "type": "object",
       "required": [
         "type",
@@ -533,7 +533,7 @@
         "type": {
           "type": "string",
           "enum": [
-            "RSTask"
+            "EOTask"
           ]
         },
         "taskType": {
@@ -542,7 +542,7 @@
       }
     },
     "rsDataSource": {
-      "title": "RSDataSource",
+      "title": "EODataSource",
       "type": "object",
       "required": [
         "id",
@@ -615,7 +615,7 @@
       }
     },
     "rsTrainingDataQuality": {
-      "title": "RSTrainingDataQuality",
+      "title": "EOTrainingDataQuality",
       "type": "object",
       "oneOf": [
         {
@@ -624,8 +624,8 @@
       ],
       "properties": {}
     },
-    "sceneRSTDQuality": {
-      "title": "SceneRSTDQuality",
+    "sceneTDQuality": {
+      "title": "SceneTDQuality",
       "type": "object",
       "required": [
         "type"
@@ -639,7 +639,7 @@
         "type": {
           "type": "string",
           "enum": [
-            "SceneRSTDQuality"
+            "SceneTDQuality"
           ]
         },
         "labelClassCorrectness": {
@@ -650,8 +650,8 @@
         }
       }
     },
-    "objectRSTDQuality": {
-      "title": "ObjectRSTDQuality",
+    "objectTDQuality": {
+      "title": "ObjectTDQuality",
       "type": "object",
       "required": [
         "type"
@@ -665,7 +665,7 @@
         "type": {
           "type": "string",
           "enum": [
-            "ObjectRSTDQuality"
+            "ObjectTDQuality"
           ]
         },
         "labelClassCorrectness": {
@@ -685,8 +685,8 @@
         }
       }
     },
-    "pixelRSTDQuality": {
-      "title": "PixelRSTDQuality",
+    "pixelTDQuality": {
+      "title": "PixelTDQuality",
       "type": "object",
       "required": [
         "type"
@@ -700,7 +700,7 @@
         "type": {
           "type": "string",
           "enum": [
-            "PixelRSTDQuality"
+            "PixelTDQuality"
           ]
         },
         "labelClassCorrectness": {
