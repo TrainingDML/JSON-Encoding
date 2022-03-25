@@ -4,10 +4,10 @@
   "title": "TrainingDML-AI JSON schema",
   "oneOf": [
     {
-      "$ref": "#/definitions/rsTrainingDataset"
+      "$ref": "#/definitions/eoTrainingDataset"
     },
     {
-      "$ref": "#/definitions/rsTrainingData"
+      "$ref": "#/definitions/eoTrainingData"
     }
   ],
   "definitions": {
@@ -88,10 +88,10 @@
             "count"
           ],
           "properties": {
-            "class": {
+            "key": {
               "type": "string"
             },
-            "count": {
+            "value": {
               "type": "integer"
             }
           }
@@ -140,7 +140,7 @@
         ]
       }
     },
-    "rsTrainingDataset": {
+    "eoTrainingDataset": {
       "title": "EOTrainingDataset",
       "type": "object",
       "required": [
@@ -170,7 +170,7 @@
         "dataSources": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/rsDataSource"
+            "$ref": "#/definitions/eoDataSource"
           },
           "minItems": 1
         },
@@ -185,17 +185,17 @@
           "type": "string"
         },
         "task": {
-          "$ref": "#/definitions/rsTask"
+          "$ref": "#/definitions/eoTask"
         },
         "quality": {
-          "$ref": "#/definitions/rsTrainingDataQuality"
+          "$ref": "#/definitions/eoTrainingDataQuality"
         },
         "data": {
           "oneOf": [
             {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/rsTrainingData"
+                "$ref": "#/definitions/eoTrainingData"
               },
               "minItems": 1
             },
@@ -240,12 +240,12 @@
         }
       }
     },
-    "rsTrainingData": {
+    "eoTrainingData": {
       "title": "EOTrainingData",
       "type": "object",
       "required": [
         "type",
-        "dataUrl"
+        "dataURL"
       ],
       "oneOf": [
         {
@@ -259,7 +259,7 @@
             "EOTrainingData"
           ]
         },
-        "bbox": {
+        "extent": {
           "oneOf": [
             {
               "type": "array",
@@ -281,7 +281,7 @@
             }
           ]
         },
-        "dataTime": {
+        "dateTime": {
           "oneOf": [
             {
               "type": "array",
@@ -327,7 +327,7 @@
             }
           ]
         },
-        "dataUrl": {
+        "dataURL": {
           "oneOf": [
             {
               "type": "array",
@@ -383,6 +383,8 @@
       "type": "object",
       "required": [
         "type",
+        "object",
+        "geometryType",
         "class"
       ],
       "oneOf": [
@@ -397,10 +399,17 @@
             "ObjectLabel"
           ]
         },
+        "object": {
+          "$ref": "https://geojson.org/schema/Geometry.json"
+        },
+        "geometryType": {
+          "type": "string"
+        },
         "class": {
-          "object": {
-            "$ref": "https://geojson.org/schema/Geometry.json"
-          }
+          "type": "string"
+        },
+        "isDiffDetectable": {
+          "type": "string"
         }
       }
     },
@@ -409,7 +418,7 @@
       "type": "object",
       "required": [
         "type",
-        "imageUrl"
+        "imageURL"
       ],
       "oneOf": [
         {
@@ -423,7 +432,7 @@
             "PixelLabel"
           ]
         },
-        "imageUrl": {
+        "imageURL": {
           "type": "string",
           "format": "uri-reference"
         }
@@ -473,11 +482,8 @@
         "method": {
           "type": "string"
         },
-        "tools": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+        "tool": {
+          "type": "string"
         }
       }
     },
@@ -517,7 +523,7 @@
         }
       }
     },
-    "rsTask": {
+    "eoTask": {
       "title": "EOTask",
       "type": "object",
       "required": [
@@ -541,7 +547,7 @@
         }
       }
     },
-    "rsDataSource": {
+    "eoDataSource": {
       "title": "EODataSource",
       "type": "object",
       "required": [
@@ -558,7 +564,7 @@
         "citation": {
           "type": "string"
         },
-        "satellite": {
+        "platform": {
           "type": "string"
         },
         "sensor": {
@@ -614,7 +620,7 @@
         }
       }
     },
-    "rsTrainingDataQuality": {
+    "eoTrainingDataQuality": {
       "title": "EOTrainingDataQuality",
       "type": "object",
       "oneOf": [
@@ -632,7 +638,7 @@
       ],
       "oneOf": [
         {
-          "$ref": "#/definitions/rsTrainingDataQuality"
+          "$ref": "#/definitions/eoTrainingDataQuality"
         }
       ],
       "properties": {
@@ -658,7 +664,7 @@
       ],
       "oneOf": [
         {
-          "$ref": "#/definitions/rsTrainingDataQuality"
+          "$ref": "#/definitions/eoTrainingDataQuality"
         }
       ],
       "properties": {
@@ -693,7 +699,7 @@
       ],
       "oneOf": [
         {
-          "$ref": "#/definitions/rsTrainingDataQuality"
+          "$ref": "#/definitions/eoTrainingDataQuality"
         }
       ],
       "properties": {

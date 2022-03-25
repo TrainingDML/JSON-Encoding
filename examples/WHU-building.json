@@ -55,13 +55,13 @@
         1566661.4,
         5179409.2
       ],
-      "dataTime": [
+      "dateTime": [
         "2012-01-01",
         "2016-01-01"
       ],
       "dataUrl": [
         "before/before.tif",
-        "change_label/change_label.tif"
+        "after/after.tif"
       ],
       "numberOfLabels": 1,
       "labels": {
